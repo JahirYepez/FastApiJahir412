@@ -9,7 +9,7 @@ from services.computer import ComputerService
 from schemas.computer import Computer
 
 
-computer_router = APIRouter
+computer_router = APIRouter()
 
 
 ### ENDPOINT para obtener todas las computadoras

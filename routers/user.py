@@ -4,7 +4,7 @@ from fastapi.responses import JSONResponse
 from schemas.user import User
 
 
-user_router = APIRouter
+user_router = APIRouter()
 
 
 @user_router.post('/login', tags=['auth'])

@@ -9,7 +9,7 @@ from services.movie import MovieService
 from schemas.movie import Movie
 
 
-movie_router = APIRouter
+movie_router = APIRouter()
 
 
 @movie_router.get('/movies', tags=['Movies'], response_model= List[Movie], status_code= 200, dependencies=[Depends(JWTBearer())]) # Dependencies es para forzar la autenticacion previa
