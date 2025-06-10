@@ -1,0 +1,31 @@
+name: Deploy API
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout del código
+        uses: actions/checkout@v3
+
+      - name: Instalar sshpass
+        run: |
+          sudo apt-get update -y
+          sudo apt-get install -y sshpass
+
+      - name: Desplegar al servidor remoto
+        env:
+          SERVER_USER: ${{ secrets.SERVER_USER }}
+          SERVER_PASSWORD: ${{ secrets.SERVER_PASSWORD }}
+          SERVER_IP: ${{ secrets.SERVER_IP }}
+        run: |
+          sshpass -p "$SERVER_PASSWORD" ssh -o StrictHostKeyChecking=no $SERVER_USER@$SERVER_IP '
+            cd /home/my_movie_api_412 &&
+            git pull origin main &&
+            pm2 restart my_movie_api_412
+          '
