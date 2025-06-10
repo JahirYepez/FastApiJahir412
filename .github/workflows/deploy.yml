@@ -26,6 +26,7 @@ jobs:
         run: |
           sshpass -p "$SERVER_PASSWORD" ssh -o StrictHostKeyChecking=no $SERVER_USER@$SERVER_IP '
             cd /home/FastApiJahir412 &&
+            git reset --hard HEAD &&
             git pull origin main &&
             pm2 restart my_movie_api_412
           '
